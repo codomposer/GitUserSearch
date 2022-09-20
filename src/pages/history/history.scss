@@ -1,0 +1,33 @@
+.history-content {
+  width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0px 0px 5px #888888;
+  ul {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    li {
+      display: flex;
+      align-items: center;
+      height:20px;
+      margin-bottom: 5px;
+      .time {
+        color: #9aa0a6;
+        margin-left: 15px !important;
+        margin-inline-start: 6px;
+        min-width: 100px;
+      }
+      .search {
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 16px;
+      }
+      .delete {
+        margin-left: auto;
+        cursor: pointer;
+      }
+    }
+  }
+}
