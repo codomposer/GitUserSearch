@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ProfileReducer from "feature/profile";
-import RepositoryReducer from "feature/repository";
-import FollowerReducer from "feature/follower";
+import ProfileReducer from "slice/profile";
+import RepositoryReducer from "slice/repository";
+import FollowerReducer from "slice/follower";
 
 export const store = configureStore({
   reducer: {

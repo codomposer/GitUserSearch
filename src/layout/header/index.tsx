@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+
+import { fetchUser } from "slice/profile";
+import { fetchRepos } from "slice/repository";
+import { fetchUsers } from "slice/follower";
+import { AppDispatch } from "app/store";
 
 import { ReactComponent as GitIcon } from "assets/git.svg";
 import { ReactComponent as Search } from "assets/search.svg";
 
 import "./header.scss";
-
-import { useDispatch } from "react-redux";
-import { fetchUser } from "feature/profile";
-import { fetchRepos } from "feature/repository";
-import { fetchUsers } from "feature/follower";
-import { AppDispatch } from "app/store";
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();

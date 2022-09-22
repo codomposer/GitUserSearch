@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-
 import { useSelector } from "react-redux";
+
 import { RootState } from "app/store";
 
 import { ReactComponent as Star } from "assets/star.svg";
