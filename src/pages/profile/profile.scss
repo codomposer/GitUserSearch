@@ -6,6 +6,7 @@
     .header {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
       .profile-avatar {
         width: 230px;
         img {
@@ -72,6 +73,16 @@
       padding-top: 20px;
       display: grid;
       grid-template-columns: auto auto;
+      @media (max-width: 640px) {
+        display: flex;
+        flex-direction: column;
+        .repositories {
+          padding: 0px;
+        }
+        .followers {
+          padding: 0px;
+        }
+      }
       h2 {
         font-size: 22px;
         font-weight: 400;
@@ -129,8 +140,8 @@
           padding: 0;
           li {
             border-bottom: 1px solid #ddd;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
+            margin-bottom: 9px;
+            padding-bottom: 9px;
             a {
               display: flex;
               gap: 15px;

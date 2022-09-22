@@ -11,13 +11,13 @@
     li {
       display: flex;
       align-items: center;
-      height:20px;
-      margin-bottom: 5px;
+      height:25px;
+      margin-bottom: 10px;
       .time {
         color: #9aa0a6;
         margin-left: 15px !important;
         margin-inline-start: 6px;
-        min-width: 100px;
+        min-width: 140px;
       }
       .search {
         cursor: pointer;
@@ -25,6 +25,7 @@
         line-height: 16px;
       }
       .delete {
+        width: 25px;
         margin-left: auto;
         cursor: pointer;
       }
