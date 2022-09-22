@@ -19,8 +19,8 @@ const Repositories = () => {
     <div className="repositories">
       <h2>Repositories</h2>
       <ul>
-        {repositories?.data.map((item: any, key: any) => (
-          <li key={key}>
+        {repositories?.data.map((item: any, key: number) => (
+          <li key={`repository-${key}`}>
             <div className="name">
               <p>
                 <a

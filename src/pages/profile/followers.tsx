@@ -7,9 +7,9 @@ import { RootState } from "app/store";
 import "./profile.scss";
 
 import { useDispatch } from "react-redux";
-import { fetchUser } from "feature/profile";
-import { fetchRepos } from "feature/repository";
-import { fetchUsers } from "feature/follower";
+import { fetchUser } from "slice/profile";
+import { fetchRepos } from "slice/repository";
+import { fetchUsers } from "slice/follower";
 import { AppDispatch } from "app/store";
 
 const Followers = () => {
@@ -32,8 +32,8 @@ const Followers = () => {
     <div className="followers">
       <h2>Followers</h2>
       <ul>
-        {followers?.data.map((item: any, key: any) => (
-          <li key={key}>
+        {followers?.data.map((item: any, key: number) => (
+          <li key={`follower-${key}`}>
             <div
               className="item"
               onClick={() => {

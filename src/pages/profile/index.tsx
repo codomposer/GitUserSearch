@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import "./profile.scss";
-
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "app/store";
 
+import { RootState } from "app/store";
 import Repositories from "./repositories";
 import Followers from "./followers";
+
+import "./profile.scss";
 
 function Search() {
   const profile: any = useSelector((state: RootState) => state.profile);
@@ -25,7 +22,6 @@ function Search() {
 
   return (
     <div className="container">
-      <ToastContainer />
       {show && (
         <div className="profile-content">
           <div className="header">

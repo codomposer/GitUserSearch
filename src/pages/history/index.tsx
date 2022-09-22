@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { fetchUser } from "slice/profile";
+import { fetchRepos } from "slice/repository";
+import { fetchUsers } from "slice/follower";
+import { AppDispatch } from "app/store";
 
 import { ReactComponent as Delete } from "assets/recyle.svg";
 import { removeLocalStorage, getItemLocalStorage } from "utils/storage";
 
 import "./history.scss";
 
-import { useDispatch } from "react-redux";
-import { fetchUser } from "feature/profile";
-import { fetchRepos } from "feature/repository";
-import { fetchUsers } from "feature/follower";
-import { AppDispatch } from "app/store";
+
 
 const History = () => {
   const [history, setHistory] = useState<Array<any>>([]);
