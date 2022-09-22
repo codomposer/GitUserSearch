@@ -33,10 +33,11 @@ export const valueSlice = createSlice({
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       // Add user to the state array
       state = { data: [...action.payload] };
-      // Object.entries(state).forEach(([key, value]) => {
-      //   console.log(key, value);
-      //   value = action.payload.temp;
-      // });
+      return state;
+    });
+    builder.addCase(fetchUsers.rejected, (state) => {
+      // Add user to the state array
+      state = { data: [] };
       return state;
     });
   },

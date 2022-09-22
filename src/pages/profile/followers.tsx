@@ -1,16 +1,32 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { RootState } from "app/store";
 
 import "./profile.scss";
 
+import { useDispatch } from "react-redux";
+import { fetchUser } from "feature/profile";
+import { fetchRepos } from "feature/repository";
+import { fetchUsers } from "feature/follower";
+import { AppDispatch } from "app/store";
+
 const Followers = () => {
   const followers: any = useSelector((state: RootState) => state.follower);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (followers.data.length === 0) return;
   }, [followers]);
+
+  const research = (arg: string) => {
+    navigate("/");
+    dispatch(fetchUser(arg));
+    dispatch(fetchRepos(arg));
+    dispatch(fetchUsers(arg));
+  };
 
   return (
     <div className="followers">
@@ -18,12 +34,17 @@ const Followers = () => {
       <ul>
         {followers?.data.map((item: any, key: any) => (
           <li key={key}>
-            <a href={item.html_url} target="_blank" rel="noopener noreferrer">
+            <div
+              className="item"
+              onClick={() => {
+                research(item.login);
+              }}
+            >
               <div>
                 <img src={item.avatar_url} alt="follower" />
               </div>
               <p>{item.login}</p>
-            </a>
+            </div>
           </li>
         ))}
       </ul>

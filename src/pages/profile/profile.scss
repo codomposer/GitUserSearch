@@ -142,8 +142,9 @@
             border-bottom: 1px solid #ddd;
             margin-bottom: 9px;
             padding-bottom: 9px;
-            a {
+            .item {
               display: flex;
+              cursor: pointer;
               gap: 15px;
               text-decoration: none;
               color: #000;

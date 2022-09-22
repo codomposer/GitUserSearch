@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useSelector } from "react-redux";
 import { RootState } from "app/store";
@@ -23,7 +23,11 @@ const Repositories = () => {
           <li key={key}>
             <div className="name">
               <p>
-                <a href={item.html_url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={item.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {item.name}
                 </a>
               </p>

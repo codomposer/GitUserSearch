@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./profile.scss";
 
@@ -14,12 +16,16 @@ function Search() {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    if (profile.name === "") return;
+    if (Object.keys(profile).length === 0) {
+      setShow(false);
+      return;
+    }
     setShow(true);
   }, [profile]);
 
   return (
     <div className="container">
+      <ToastContainer />
       {show && (
         <div className="profile-content">
           <div className="header">
@@ -45,7 +51,7 @@ function Search() {
               <div className="vote">
                 <div>
                   <p className="count">{profile?.following}</p>
-                  <p>Followers</p>
+                  <p>Following</p>
                 </div>
                 <div>
                   <p className="count">{profile?.followers}</p>

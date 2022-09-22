@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { ReactComponent as GitIcon } from "assets/git.svg";
 import { ReactComponent as Search } from "assets/search.svg";
@@ -10,22 +11,27 @@ import { useDispatch } from "react-redux";
 import { fetchUser } from "feature/profile";
 import { fetchRepos } from "feature/repository";
 import { fetchUsers } from "feature/follower";
+import { AppDispatch } from "app/store";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
-    navigate('/');
     e.preventDefault();
-    // @ts-ignore
+
+    if (search === "") {
+      toast.warning("Please input user name to search!");
+      return;
+    }
+    navigate("/");
     dispatch(fetchUser(search));
-    // @ts-ignore
     dispatch(fetchRepos(search));
-    // @ts-ignore
     dispatch(fetchUsers(search));
+
+    setSearch("");
   };
 
   const handleChange = (e: any) => {
@@ -53,7 +59,8 @@ const Header = () => {
               type="text"
               className=""
               name="search"
-              placeholder="Search for a user, e.g. gitakileus"
+              value={search}
+              placeholder="Search for a user"
               onChange={handleChange}
             />
             <button type="submit">

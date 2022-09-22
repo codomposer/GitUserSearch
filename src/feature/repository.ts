@@ -11,8 +11,8 @@ export const fetchRepos = createAsyncThunk(
   }
 );
 
-const initialState:any = {
-  data:[]
+const initialState: any = {
+  data: [],
 };
 
 export const valueSlice = createSlice({
@@ -20,7 +20,7 @@ export const valueSlice = createSlice({
   initialState,
   reducers: {
     setValue: (state, action) => {
-      state = {data:[...action.payload]};
+      state = { data: [...action.payload] };
       return state;
     },
     initValue: (state) => {
@@ -32,11 +32,12 @@ export const valueSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchRepos.fulfilled, (state, action) => {
       // Add user to the state array
-      state = {data:[...action.payload]};
-      // Object.entries(state).forEach(([key, value]) => {
-      //   console.log(key, value);
-      //   value = action.payload.temp;
-      // });
+      state = { data: [...action.payload] };
+      return state;
+    });
+    builder.addCase(fetchRepos.rejected, (state) => {
+      // Add user to the state array
+      state = { data: [] };
       return state;
     });
   },

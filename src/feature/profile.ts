@@ -1,34 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { githubApi } from "api/git";
-
-export interface profileStore {
-  name: string;
-  login: string;
-  bio: string;
-  company: string;
-  location: string;
-  blog: string;
-  followers: number;
-  following: number;
-  public_repos: number;
-}
+import { toast } from "react-toastify";
 
 export const fetchUser = createAsyncThunk("users/", async (user: string) => {
-  const response = await githubApi.get(`/users/${user}`);
-  return response.data;
+  try {
+    const res = await githubApi.get(`/users/${user}`);
+    return res.data;
+  } catch (err: any) {
+    console.log(err);
+    toast.error(err.response.data.message);
+  }
 });
 
-const initialState: profileStore = {
-  name: "",
-  login: "",
-  bio: "",
-  company: "",
-  location: "",
-  blog: "",
-  followers: 0,
-  following: 0,
-  public_repos: 0,
-};
+const initialState = {};
 
 export const valueSlice = createSlice({
   name: "profile",
@@ -48,10 +32,11 @@ export const valueSlice = createSlice({
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       // Add user to the state array
       state = { ...action.payload };
-      // Object.entries(state).forEach(([key, value]) => {
-      //   console.log(key, value);
-      //   value = action.payload.temp;
-      // });
+      return state;
+    });
+    builder.addCase(fetchUser.rejected, (state) => {
+      // Add user to the state array
+      state = {}
       return state;
     });
   },

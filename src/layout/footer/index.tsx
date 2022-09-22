@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 import "./footer.scss";
-import { removeLocalStorage, getItemLocalStorage } from "utils/storage";
+import { getItemLocalStorage } from "utils/storage";
 
 import { useSelector } from "react-redux";
 import { RootState } from "app/store";
@@ -24,7 +24,7 @@ const Footer = () => {
   }, []);
 
   useEffect(() => {
-    if (profile.login === "") return;
+    if (Object.keys(profile).length === 0) return;
 
     let currentCount = localStorage.getItem("count");
     localStorage.setItem(
@@ -37,10 +37,10 @@ const Footer = () => {
 
     history.push({ date: today, search: profile.login });
     history.reverse();
-    
+
     localStorage.setItem("history", JSON.stringify(history));
     getCount();
-  }, [profile.login]);
+  }, [profile]);
 
   return (
     <footer>

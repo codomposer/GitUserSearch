@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { ReactComponent as Delete } from "assets/recyle.svg";
 import { removeLocalStorage, getItemLocalStorage } from "utils/storage";
 
 import "./history.scss";
 
+import { useDispatch } from "react-redux";
+import { fetchUser } from "feature/profile";
+import { fetchRepos } from "feature/repository";
+import { fetchUsers } from "feature/follower";
+import { AppDispatch } from "app/store";
+
 const History = () => {
   const [history, setHistory] = useState<Array<any>>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let history = getItemLocalStorage("history");
@@ -16,12 +26,16 @@ const History = () => {
   const remove = (arg: number) => {
     history.splice(arg, 1);
     console.log(history);
-    setHistory(history);
+    setHistory([...history]);
     removeLocalStorage(arg, "history");
   };
 
+
   const research = (arg: string) => {
-    alert(arg);
+    navigate("/");
+    dispatch(fetchUser(arg));
+    dispatch(fetchRepos(arg));
+    dispatch(fetchUsers(arg));
   };
 
   return (
