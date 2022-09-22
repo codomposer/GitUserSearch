@@ -36,7 +36,7 @@ export const valueSlice = createSlice({
     });
     builder.addCase(fetchUser.rejected, (state) => {
       // Add user to the state array
-      state = {}
+      state = {};
       return state;
     });
   },
